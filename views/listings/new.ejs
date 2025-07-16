@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheet/style.css">
+  <title>Make a New Listing!</title>
+</head>
+<body>
+  <h1>Add a List</h1>
+  <form action="/listings" method="post">
+
+    <Label for="title">Title:</Label>
+    <input type="text" id="title" name="title">
+
+    <label for="description">Description:</label>
+    <textarea name="description" id="description"></textarea>
+
+    <label for="price">Price:</label>
+    <input type="text" name="price" id="price">
+
+    <label for="image">Image URL:</label>
+    <input type="text" id="image" name="image">
+
+    <button type="submit">Create a List</button>
+
+  </form>
+</body>
+</html>

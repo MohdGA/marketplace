@@ -6,17 +6,22 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
-const authController = require('./controllers/auth.controller')
+const authController = require('./controllers/auth.controller');
+const listController = require('./controllers/listing.controller');
+const path = require('path');
+
+
 const isSignedIn = require('./middleware/is-signed-in')
-const passUserToView = require('./middleware/pass-user-to-view')
+const passUserToView = require('./middleware/pass-user-to-view');
 
 // DATABASE CONNECTION
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on('connected', () => {
     console.log(`Connected to MongoDB ${mongoose.connection.name} 🙃.`)
-})
+});
 
 // MIDDLEWARE
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 app.use(morgan('dev'))
@@ -35,7 +40,8 @@ app.get('/', (req, res) => {
 })
 
 // ROUTES
-app.use('/auth', authController)
+app.use('/auth', authController);
+app.use('/listings', listController);
 
 app.get('/vip-lounge', isSignedIn, (req, res) => {
     res.send(`Welcome ✨`)
