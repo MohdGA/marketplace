@@ -5,5 +5,22 @@ body{
 form{
   display: flex;
   flex-direction: column;
-  min-width: 30vw;
+  width: 60vw;
+}
+
+.listing-img{
+  width: 30vw;
+  height: 30vh;
+  border-radius: 10px;
+
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  list-style: none;
+  text-align: center;
 }

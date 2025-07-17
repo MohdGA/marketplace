@@ -3,9 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheet/style.css">
   <title>Document</title>
 </head>
 <body>
-  <%= List.title %>
+  <h1>Marketplace</h1>
+  <ul>
+ <% lists.forEach((list) => { %>
+   <li>
+    <a href="/listings/<%=list._id%>"><h2><%= list.title %></h2></a>
+      
+      <p> <%= list.description %> </p>
+      <p><strong> <%= list.price %> BHD</strong></p>
+      <img src=" <%= list.image %> " class="listing-img" alt="cat img">
+  </li>
+ <% }) %>
+</ul>
 </body>
 </html>
