@@ -7,7 +7,9 @@
   <title>Document</title>
 </head>
 <body>
+  <div class=""></div>
   <h1>Marketplace</h1>
+  <p><a href="/">Home Page</a></p>
   <ul>
  <% lists.forEach((list) => { %>
    <li>
@@ -16,6 +18,8 @@
       <p> <%= list.description %> </p>
       <p><strong> <%= list.price %> BHD</strong></p>
       <img src=" <%= list.image %> " class="listing-img" alt="cat img">
+
+      
   </li>
  <% }) %>
 </ul>
