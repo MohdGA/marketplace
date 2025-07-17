@@ -1,19 +1,24 @@
 <%- include('../partials/head') %>
 
-  <h1 class="text-center">Marketplace</h1>
-  <p><a href="/">Home Page</a></p>
-  <ul>
- <% lists.forEach((list) => { %>
-   <li>
-    <a href="/listings/<%=list._id%>"><h2><%= list.title %></h2></a>
-      
-      <p> <%= list.description %> </p>
-      <p><strong> <%= list.price %> BHD</strong></p>
-      <img src=" <%= list.image %> " class="listing-img" alt="cat img">
+<div class="container mt-4">
+  <h1 class="text-center mb-4">Marketplace Listings</h1>
 
-      
-  </li>
- <% }) %>
-</ul>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% lists.forEach((listing) => { %>
+      <div class="col">
+        <div class="card h-100">
+          <img src="<%= listing.image %>" class="card-img-top" alt="Image of <%= listing.title %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= listing.title %></h5>
+            <p class="card-text"><%= listing.description %></p>
+            <p class="card-text"><strong><%= listing.price %> BHD</strong></p>
+            <a href="/listings/<%= listing._id %>" class="btn btn-primary">View Listing</a>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
 </body>
 </html>

@@ -1,27 +1,32 @@
-body{
-  background-color: cornsilk;
-  
+body {
+    background-color: cornsilk;
+    text-align: center;
 }
 
-form{
-  display: flex;
-  flex-direction: column;
-  width: 60vw;
-  margin: 10px;
+/* form {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+} */
+
+.listing-img {
+    width: 50vw;
+}
+ul {
+    margin: 0px;
+    padding: 0px
 }
 
-.listing-img{
-  width: 30vw;
-  border-radius: 10px;
-  margin: 10px;
+li {
+    list-style: none;
+    text-align: center;
 }
 
-ul{
-  margin: 0;
-  padding: 0;
+.actions {
+    display: flex;
+    flex-direction: column;
 }
 
-li{
-  list-style: none;
-  text-align: center;
+#edit-button {
+    width: 90vw;
 }

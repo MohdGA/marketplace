@@ -1,31 +1,40 @@
 <%- include('../partials/head') %>
 
-      <h2 class="text-center"> <%= foundList.title %> </h2>
-      <p> <%= foundList.description %> </p>
-      <p><strong> <%= foundList.price %> BHD</strong></p>
-      <img src=" <%= foundList.image %> " class="listing-img" alt="cat img">
-      <br>
-      <% if(foundList.seller._id.equals(user._id)){ %>
-      <form action="/listings/<%=foundList._id%>?_method=DELETE" method="post">
-        <button type="submit">Delete</button>
-      </form>
+<div class="container mt-4" style="max-width: 700px;">
+  <h2 class="text-center mb-3"><%= foundList.title %></h2>
 
-      <a href="/listings/<%=foundList._id%>/edit">
-         <button type="submit">EDIT</button>
-      </a>
-      <% } %>
+  <img src="<%= foundList.image %>" class="img-fluid rounded mb-3" alt="Image of <%= foundList.title %>">
 
-      <h3>Leave a comment</h3>
-      <form action="/listings/<%=foundList._id%>/comments" method="post">
-        <textarea name="content" id=""></textarea>
-        <button type="submit">Post a Comment</button>
+  <p class="lead"><%= foundList.description %></p>
+  <p><strong>Price:</strong> <%= foundList.price %> BHD</p>
+  <p><strong>Seller:</strong> <%= foundList.seller.username %></p>
+
+  <% if (foundList.seller._id.equals(user._id)) { %>
+    <div class="d-flex justify-content-between mb-4">
+      <form action="/listings/<%= foundList._id %>?_method=DELETE" method="POST">
+        <button type="submit" class="btn btn-danger">Delete</button>
       </form>
-      <h3>Comments</h3>
-      <ul>
-       <% foundList.comments.forEach((comment) => { %>
-          <li>  <%= comment.content %> - <%= comment.author.username %>
-          </li>
-       <% }) %>
-      </ul>
+      <a href="/listings/<%= foundList._id %>/edit" class="btn btn-warning">Edit</a>
+    </div>
+  <% } %>
+
+  <h3 class="text-center">Leave a Comment</h3>
+  <form action="/listings/<%= foundList._id %>/comments" method="POST" class="mb-4">
+    <div class="mb-3">
+      <textarea name="content" class="form-control" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Post Comment</button>
+  </form>
+
+  <h3 class="text-center">Comments</h3>
+  <ul class="list-group">
+    <% foundList.comments.forEach((comment) => { %>
+      <li class="list-group-item">
+        <%= comment.content %> — <em><%= comment.author.username %></em>
+      </li>
+    <% }) %>
+  </ul>
+</div>
+
 </body>
 </html>
