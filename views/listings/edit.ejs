@@ -1,29 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/stylesheet/style.css">
-  <title>Make a New Listing!</title>
-</head>
-<body>
-  <h1> Edit <%=foundList.title %> </h1>
-  <form action="/listings/<%=foundList._id%>?_method=PUT" method="post">
+<%- include('../partials/head') %>
 
-    <Label for="title">Title:</Label>
-    <input type="text" id="title" value="<%=foundList.title %>" name="title">
+<div class="container mt-4" style="max-width: 600px;">
+  <h1 class="text-center mb-4">Edit <%= foundList.title %></h1>
 
-    <label for="description">Description:</label>
-    <textarea name="description"  id="description"><%=foundList.description %></textarea>
+  <form action="/listings/<%= foundList._id %>?_method=PUT" method="POST">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" name="title" id="title" value="<%= foundList.title %>" class="form-control" required />
+    </div>
 
-    <label for="price">Price:</label>
-    <input type="text" name="price" value="<%=foundList.price %>" id="price">
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea name="description" id="description" class="form-control" rows="3" required><%= foundList.description %></textarea>
+    </div>
 
-    <label for="image">Image URL:</label>
-    <input type="text" value="<%=foundList.image %>" class="img" id="image" name="image">
+    <div class="mb-3">
+      <label for="price" class="form-label">Price (BHD)</label>
+      <input type="number" name="price" id="price" value="<%= foundList.price %>" class="form-control" required />
+    </div>
 
-    <button type="submit">Edit a List</button>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image URL</label>
+      <input type="text" name="image" id="image" value="<%= foundList.image %>" class="form-control" />
+    </div>
 
+    <button type="submit" class="btn btn-warning w-100">Update Listing</button>
   </form>
+</div>
+
 </body>
 </html>

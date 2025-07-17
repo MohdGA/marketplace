@@ -26,7 +26,7 @@ router.get("/", async(req,res) => {
 });
 
 router.get('/:listingId', async (req,res) => {
-  const foundList = await Listing.findById(req.params.listingId).populate('seller');
+  const foundList = await Listing.findById(req.params.listingId).populate('seller').populate('comments.author');
   console.log(foundList);
   res.render('listings/show.ejs',{foundList});
 });
@@ -61,12 +61,13 @@ router.put('/:listingId', isSignedIn ,async (req,res) => {
 
 // ADD COMMENTS TO THE DATABASE
 router.post('/:listingId/comments', isSignedIn ,async (req,res) => {
-  const foundList = await Listing.findById(req.params.listingId);
-  console.log(foundList)
-  req.body.author = req.session.user._id
-  console.log(req.body)
+  const foundList = await Listing.findById(req.params.listingId).populate('comments.author');
+ 
+  req.body.author = req.session.user._id 
+ console.log(req.body)
   foundList.comments.push(req.body);
-  await foundList.save();
+  await foundList.save(); 
+  console.log('foundlist: ', foundList)
   res.redirect('/listings/' + req.params.listingId);
 })
 

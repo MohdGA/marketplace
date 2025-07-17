@@ -5,7 +5,7 @@ const commentShcema = new mongoose.Schema({
   content: String,
   author: {
     type: Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'User'
   },
 }, {timestamps: true});
 

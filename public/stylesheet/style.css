@@ -1,18 +1,19 @@
 body{
   background-color: cornsilk;
+  
 }
 
 form{
   display: flex;
   flex-direction: column;
   width: 60vw;
+  margin: 10px;
 }
 
 .listing-img{
   width: 30vw;
-  height: 40vh;
   border-radius: 10px;
-
+  margin: 10px;
 }
 
 ul{
