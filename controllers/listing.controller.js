@@ -42,7 +42,7 @@ router.delete('/:listingId', async (req,res) => {
 });
 
 // RENDER THE EDIT FORM VIEW
-router.get('/:listingId/edit', async (req,res) => {
+router.get('/:listingId/edit', isSignedIn,async (req,res) => {
   const foundList = await Listing.findById(req.params.listingId).populate('seller'); 
   if(foundList.seller._id.equals(req.session.user._id)){
     res.render('listings/edit.ejs', {foundList})
@@ -50,13 +50,24 @@ router.get('/:listingId/edit', async (req,res) => {
   
 });
 
-router.put('/:listingId', async (req,res) => {
+router.put('/:listingId', isSignedIn ,async (req,res) => {
   const foundList = await Listing.findById(req.params.listingId).populate('seller');
 
   if(foundList.seller._id.equals(req.session.user._id)){
     await Listing.findByIdAndUpdate(req.params.listingId, req.body, {new: true});
     res.redirect('/listings');
   };
+});
+
+// ADD COMMENTS TO THE DATABASE
+router.post('/:listingId/comments', isSignedIn ,async (req,res) => {
+  const foundList = await Listing.findById(req.params.listingId);
+  console.log(foundList)
+  req.body.author = req.session.user._id
+  console.log(req.body)
+  foundList.comments.push(req.body);
+  await foundList.save();
+  res.redirect('/listings/' + req.params.listingId);
 })
 
 module.exports = router;

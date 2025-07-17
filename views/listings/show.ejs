@@ -16,11 +16,23 @@
       <form action="/listings/<%=foundList._id%>?_method=DELETE" method="post">
         <button type="submit">Delete</button>
       </form>
-      
+
       <a href="/listings/<%=foundList._id%>/edit">
          <button type="submit">EDIT</button>
       </a>
       <% } %>
- 
+
+      <h3>Leave a comment</h3>
+      <form action="/listings/<%=foundList._id%>/comments" method="post">
+        <textarea name="content" id=""></textarea>
+        <button type="submit">Post a Comment</button>
+      </form>
+      <h3>Comments</h3>
+      <ul>
+       <% foundList.comments.forEach((comment) => { %>
+          <li>  <%= comment.content %> - <%= comment.author.username %>
+          </li>
+       <% }) %>
+      </ul>
 </body>
 </html>
